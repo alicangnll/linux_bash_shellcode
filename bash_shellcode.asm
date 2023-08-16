@@ -1,8 +1,10 @@
 BITS 64
 
 section .data
+  msg db "Injected!!!", 0ah
+
 section .text
-global _start
+  global _start
  
 _start:
   xor rax, rax
@@ -19,9 +21,15 @@ _start:
  
   xor eax, eax
   mov al, 59
+  mov rax, 1
+  mov rdi, 1
+  mov rsi, msg
+  mov rdx, 13
   syscall
  
   xor eax, eax
   mov ebx, eax
   mov al, 60
+  mov rax, 60
+  mov rdi, 0
   syscall
